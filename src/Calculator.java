@@ -59,8 +59,10 @@ public class Calculator extends JFrame {
                 if (isLastOperationWasResult) {
                     textField1.setText("");
                     isLastOperationWasResult = false;
-                }
-                if (textField1.getText().length() != 1) textField1.setText(textField1.getText() + b0.getText());
+                } else if (textField1.getText().contains("0") && textField1.getText().length() == 1) return;
+                else
+                    textField1.setText(textField1.getText() + b0.getText());
+                
             }
         });
 
@@ -167,7 +169,7 @@ public class Calculator extends JFrame {
                     wynik = Math.pow(num1, 2);
 
                 }
-                    textField1.setText(String.valueOf(wynik));
+                textField1.setText(String.valueOf(wynik));
                 Repository.saveValueToDatabase(wynik);
             }
         });
